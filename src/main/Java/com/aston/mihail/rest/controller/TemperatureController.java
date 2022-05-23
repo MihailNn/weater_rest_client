@@ -18,7 +18,7 @@ public class TemperatureController {
     }
 
     @PostMapping(value = "/temp", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Weather tempratureHandler(@RequestBody City city) {
+    public Weather temperatureHandler(@RequestBody City city) {
         return temperatureResolver.getTemperature(city);
     }
 }

@@ -14,17 +14,12 @@ import org.springframework.web.client.RestTemplate;
 public class TemperatureResolver {
     @Autowired
     RestTemplate restTemplate;
-    private String url = "https://api.openweathermap.org/data/2.5/weather?appid=e4f07dd763eee655eb375cb2ebe41131&units=metric&q=Minsk";
 
     public Weather getTemperature(City city){
+        String url = "https://api.openweathermap.org/data/2.5/weather?appid=e4f07dd763eee655eb375cb2ebe41131&units=metric&q=";
         Weather weather = new Weather();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.set("appid", "e4f07dd763eee655eb375cb2ebe41131");
-//        headers.set("units", "metric");
-//        String cityName = city.getСity();
-        //wrap of HTTP  response
-//        ResponseEntity<String> responseEntity = ResponseEntity.ok().headers(headers).body("cityNumber");
+        url = url + city.getСity();
+
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String temperetJson = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -34,7 +29,8 @@ public class TemperatureResolver {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        String temerature = jsonNode.path("main").path("temp").asText();
+        String temperature = jsonNode.path("main").path("temp").asText();
+        weather.setTemp(temperature);
 
         return weather;
     }
