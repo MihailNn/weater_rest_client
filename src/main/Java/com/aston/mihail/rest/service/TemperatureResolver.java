@@ -18,7 +18,7 @@ public class TemperatureResolver {
     public Weather getTemperature(City city){
         String url = "https://api.openweathermap.org/data/2.5/weather?appid=e4f07dd763eee655eb375cb2ebe41131&units=metric&q=";
         Weather weather = new Weather();
-        url = url + city.getСity();
+        url = url + city.getRegion();
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String temperetJson = response.getBody();

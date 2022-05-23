@@ -1,21 +1,20 @@
 package com.aston.mihail.rest.entity;
 
 public class City {
-    private String сity;
+    private String region;
+
+    public City(String region) {
+        this.region = region;
+    }
 
     public City() {
     }
 
-    public String getСity() {
-        return сity;
+    public String getRegion() {
+        return region;
     }
 
-    public void setСity(String сity) {
-        this.сity = сity;
+    public void setRegion(String region) {
+        this.region = region;
     }
-
-    public City(String сity) {
-        this.сity = сity;
-    }
-
 }
