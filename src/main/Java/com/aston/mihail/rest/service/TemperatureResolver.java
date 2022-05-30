@@ -19,7 +19,7 @@ public class TemperatureResolver {
         String url = "https://api.openweathermap.org/data/2.5/weather?appid=e4f07dd763eee655eb375cb2ebe41131&units=metric&q=";
         Weather weather = new Weather();
         url = url + city.getRegion();
-
+        //invoke the API and get the response as JSON string
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String temperetJson = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -29,6 +29,13 @@ public class TemperatureResolver {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+//        "main":{
+//            "temp":306.15, //current temperature
+//                    "pressure":1013,
+//                    "humidity":44,
+//                    "temp_min":306, //min current temperature in the city
+//                    "temp_max":306 //max current temperature in the city
+//        }
         String temperature = jsonNode.path("main").path("temp").asText();
         weather.setTemp(temperature);
 
